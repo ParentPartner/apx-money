@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM/Bank Menu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="transactionMenu" class="menu" style="display:none;">
+        <h2 id="menuTitle">Transaction Menu</h2>
+        <div id="notification" class="notification" style="display:none;"></div>
+        <input type="number" id="transactionAmount" placeholder="Enter amount">
+        <div class="button-container">
+            <button onclick="deposit()">Deposit</button>
+            <button onclick="withdraw()">Withdraw</button>
+            <button class="close-button" onclick="closeMenu()">Close</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
