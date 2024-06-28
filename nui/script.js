@@ -7,6 +7,8 @@ window.addEventListener('message', function(event) {
         closeMenu();
     } else if (data.type === 'error') {
         showError(data.message);
+    } else if (data.type === 'success') {
+        showSuccess(data.message);
     }
 });
 
@@ -21,6 +23,7 @@ function closeMenu() {
     document.getElementById('transactionAmount').value = '';
     document.getElementById('notification').style.display = 'none';
     document.getElementById('error').style.display = 'none';
+    document.getElementById('success').style.display = 'none';
     fetch(`https://${GetParentResourceName()}/close`, { method: 'POST' });
 }
 
@@ -30,6 +33,15 @@ function showError(message) {
     errorElement.style.display = 'block';
     setTimeout(() => {
         errorElement.style.display = 'none';
+    }, 5000);
+}
+
+function showSuccess(message) {
+    const successElement = document.getElementById('success');
+    successElement.textContent = message;
+    successElement.style.display = 'block';
+    setTimeout(() => {
+        successElement.style.display = 'none';
     }, 5000);
 }
 
@@ -74,6 +86,9 @@ function playSound(type) {
             break;
         case 'error':
             sound = new Audio('sounds/error.mp3');
+            break;
+        case 'success':
+            sound = new Audio('sounds/success.mp3');
             break;
     }
     if (sound) {

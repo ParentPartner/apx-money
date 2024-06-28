@@ -102,6 +102,16 @@ button:hover {
     }
 }
 
+.success {
+    background: #00ff00;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: none;
+    animation: slideDown 0.3s;
+}
+
 .error {
     background: #ff0000;
     color: white;
@@ -111,6 +121,7 @@ button:hover {
     display: none;
     animation: slideDown 0.3s;
 }
+
 
 
 @keyframes slideDown {

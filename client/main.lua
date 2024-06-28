@@ -95,3 +95,10 @@ AddEventHandler('apx-money:error', function(message)
     })
 end)
 
+RegisterNetEvent('apx-money:success')
+AddEventHandler('apx-money:success', function(message)
+    SendNUIMessage({
+        type = 'success',
+        message = message
+    })
+end)
