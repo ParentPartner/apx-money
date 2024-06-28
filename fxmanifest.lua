@@ -10,10 +10,13 @@ ui_page 'nui/index.html'
 files {
     'nui/index.html',
     'nui/style.css',
-    'nui/script.js'
+    'nui/script.js',
+    'nui/sounds/open.mp3',
+    'nui/sounds/close.mp3',
+    'nui/sounds/error.mp3'
 }
 
-shared_script 'Config/config.lua'
+shared_script 'Config/config.lua' -- Shared script to ensure Config is available
 
 server_scripts {
     '@oxmysql/lib/MySQL.lua',

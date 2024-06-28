@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <title>ATM/Bank Menu</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
     <div id="transactionMenu" class="menu" style="display:none;">
-        <h2 id="menuTitle">Transaction Menu</h2>
+        <div class="menu-header">
+            <h2 id="menuTitle">Transaction Menu</h2>
+            <button class="close-button" onclick="closeMenu()"><i class="fas fa-times"></i></button>
+        </div>
         <div id="notification" class="notification" style="display:none;"></div>
         <input type="number" id="transactionAmount" placeholder="Enter amount">
         <div class="button-container">
-            <button onclick="deposit()">Deposit</button>
-            <button onclick="withdraw()">Withdraw</button>
-            <button class="close-button" onclick="closeMenu()">Close</button>
+            <button onclick="deposit()"><i class="fas fa-arrow-circle-down"></i> Deposit</button>
+            <button onclick="withdraw()"><i class="fas fa-arrow-circle-up"></i> Withdraw</button>
         </div>
     </div>
     <script src="script.js"></script>
