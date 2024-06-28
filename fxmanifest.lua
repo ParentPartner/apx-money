@@ -16,7 +16,7 @@ files {
     'nui/sounds/error.mp3'
 }
 
-shared_script 'Config/config.lua' -- Shared script to ensure Config is available
+shared_script 'Config/config.lua'
 
 server_scripts {
     '@oxmysql/lib/MySQL.lua',

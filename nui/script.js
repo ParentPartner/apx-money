@@ -5,6 +5,8 @@ window.addEventListener('message', function(event) {
         openMenu(data.type === 'openATM' ? 'ATM' : 'Bank');
     } else if (data.type === 'close') {
         closeMenu();
+    } else if (data.type === 'error') {
+        showError(data.message);
     }
 });
 
@@ -18,52 +20,47 @@ function closeMenu() {
     document.getElementById('transactionMenu').style.display = 'none';
     document.getElementById('transactionAmount').value = '';
     document.getElementById('notification').style.display = 'none';
+    document.getElementById('error').style.display = 'none';
     fetch(`https://${GetParentResourceName()}/close`, { method: 'POST' });
-    playSound('close');
 }
 
-function notify(message) {
-    const notification = document.getElementById('notification');
-    notification.textContent = message;
-    notification.style.display = 'block';
-    playSound('error');
+function showError(message) {
+    const errorElement = document.getElementById('error');
+    errorElement.textContent = message;
+    errorElement.style.display = 'block';
     setTimeout(() => {
-        notification.style.display = 'none';
-    }, 3000);
+        errorElement.style.display = 'none';
+    }, 5000);
 }
 
 function deposit() {
     const amount = parseFloat(document.getElementById('transactionAmount').value);
-    if (isNaN(amount) || amount <= 0) {
-        notify("You cannot deposit $0 or less.");
-        return;
+    if (!isNaN(amount)) {
+        fetch(`https://${GetParentResourceName()}/deposit`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({ amount })
+        });
+    } else {
+        showError('Invalid amount entered.');
     }
-    fetch(`https://${GetParentResourceName()}/deposit`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: JSON.stringify({ amount }),
-    }).then(() => {
-        closeMenu();
-    });
 }
 
 function withdraw() {
     const amount = parseFloat(document.getElementById('transactionAmount').value);
-    if (isNaN(amount) || amount <= 0) {
-        notify("You cannot withdraw $0 or less.");
-        return;
+    if (!isNaN(amount)) {
+        fetch(`https://${GetParentResourceName()}/withdraw`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({ amount })
+        });
+    } else {
+        showError('Invalid amount entered.');
     }
-    fetch(`https://${GetParentResourceName()}/withdraw`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: JSON.stringify({ amount }),
-    }).then(() => {
-        closeMenu();
-    });
 }
 
 function playSound(type) {

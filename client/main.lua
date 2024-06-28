@@ -68,12 +68,30 @@ end)
 
 -- NUI callback for depositing money
 RegisterNUICallback('deposit', function(data, cb)
-    TriggerServerEvent('apx-money:deposit', data.amount)
+    local amount = tonumber(data.amount)
+    if amount and amount > 0 then
+        TriggerServerEvent('apx-money:deposit', amount)
+    else
+        TriggerEvent('apx-money:error', "Invalid amount entered.")
+    end
     cb('ok')
 end)
 
--- NUI callback for withdrawing money
 RegisterNUICallback('withdraw', function(data, cb)
-    TriggerServerEvent('apx-money:withdraw', data.amount)
+    local amount = tonumber(data.amount)
+    if amount and amount > 0 then
+        TriggerServerEvent('apx-money:withdraw', amount)
+    else
+        TriggerEvent('apx-money:error', "Invalid amount entered.")
+    end
     cb('ok')
 end)
+
+RegisterNetEvent('apx-money:error')
+AddEventHandler('apx-money:error', function(message)
+    SendNUIMessage({
+        type = 'error',
+        message = message
+    })
+end)
+
