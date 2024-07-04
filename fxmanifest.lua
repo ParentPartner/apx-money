@@ -1,7 +1,7 @@
 fx_version 'cerulean'
 game 'gta5'
 
-author 'Your Name'
+author 'Andromeda'
 description 'Apex Money Management'
 version '1.0.0'
 
@@ -19,6 +19,7 @@ shared_script 'Config/config.lua'
 
 server_scripts {
     '@oxmysql/lib/MySQL.lua',
+    '@Apex/Server/functions.lua',  -- Ensure Apex functions are available
     'server/main.lua'
 }
 
@@ -26,4 +27,7 @@ client_scripts {
     'client/main.lua'
 }
 
-dependency 'oxmysql'
+dependencies {
+    'Apex',
+    'oxmysql'
+}
