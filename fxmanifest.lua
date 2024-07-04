@@ -12,7 +12,6 @@ files {
     'nui/style.css',
     'nui/script.js',
     'nui/sounds/open.mp3',
-    'nui/sounds/close.mp3',
     'nui/sounds/error.mp3'
 }
 
